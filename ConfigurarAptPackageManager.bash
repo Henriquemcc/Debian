@@ -21,6 +21,10 @@ elif [ "$(get_os_type)" == "ubuntu" ]; then
   # Alterando o mirror para a lista de mirrors do Brasil
   sed -i 's/http:\/\/archive.ubuntu.com\/ubuntu\//mirror:\/\/mirrors.ubuntu.com\/BR.txt/g' "/etc/apt/sources.list"
   sed -i 's/http:\/\/archive.ubuntu.com\/ubuntu\//mirror:\/\/mirrors.ubuntu.com\/BR.txt/g' "/etc/apt/sources.list.d/ubuntu.sources"
+
+  # Alterando repositório de segurança para utilizar https ao invés de http
+  sed -i 's/http:\/\/security.ubuntu.com\/ubuntu\//https:\/\/security.ubuntu.com\/ubuntu\//g' "/etc/apt/sources.list"
+  sed -i 's/http:\/\/security.ubuntu.com\/ubuntu\//http:\/\/security.ubuntu.com\/ubuntu\//g' "/etc/apt/sources.list.d/ubuntu.sources"
 fi
 
 # Atualizando lista de pacotes
