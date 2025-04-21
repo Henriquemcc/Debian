@@ -24,7 +24,7 @@ elif [ "$(get_os_type)" == "ubuntu" ]; then
 
   # Alterando repositório de segurança para utilizar https ao invés de http
   sed -i 's/http:\/\/security.ubuntu.com\/ubuntu\//https:\/\/security.ubuntu.com\/ubuntu\//g' "/etc/apt/sources.list"
-  sed -i 's/http:\/\/security.ubuntu.com\/ubuntu\//http:\/\/security.ubuntu.com\/ubuntu\//g' "/etc/apt/sources.list.d/ubuntu.sources"
+  sed -i 's/http:\/\/security.ubuntu.com\/ubuntu\//https:\/\/security.ubuntu.com\/ubuntu\//g' "/etc/apt/sources.list.d/ubuntu.sources"
 fi
 
 # Atualizando lista de pacotes
