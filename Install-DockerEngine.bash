@@ -9,6 +9,9 @@ run_as_root
 
 # Getting OS Type
 os_type=$(get_os_type)
+if [ "$os_type" == "linuxmint" ]; then
+    os_type="ubuntu"
+fi
 
 # Add Docker's official GPG key:
 apt-get update
