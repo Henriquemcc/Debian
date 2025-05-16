@@ -14,7 +14,7 @@ run_as_root
 
 # Installing requirements
 if ! [ "$(command -v java)" ]; then
-    apt install -y default-jre
+    DEBIAN_FRONTEND=noninteractive apt-get install -y default-jre
 fi
 
 # Downloading JAR File
