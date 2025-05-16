@@ -7,25 +7,40 @@ source OsInfo.bash
 # Rodando como root
 run_as_root
 
-if [ "$(get_os_type)" == "debian" ]; then
-  # Alterando o mirror para o mirror do Brasil
-  sed -i 's/ftp.debian.org\/debian\//ftp.br.debian.org\/debian\//g' "/etc/apt/sources.list"
-elif [ "$(get_os_type)" == "ubuntu" ]; then
-  # Instalando pacotes necessários
-  apt-get update
-  apt-get install -y apt-transport-mirrors
-  apt-get install -y apt-transport-https
-  apt-get install -y apt-utils
-  apt-get install -y apt-mirror
+# Variáveis
+country_mirror=br
 
-  # Alterando o mirror para a lista de mirrors do Brasil
-  sed -i 's/http:\/\/archive.ubuntu.com\/ubuntu\//mirror:\/\/mirrors.ubuntu.com\/BR.txt/g' "/etc/apt/sources.list"
-  sed -i 's/http:\/\/archive.ubuntu.com\/ubuntu\//mirror:\/\/mirrors.ubuntu.com\/BR.txt/g' "/etc/apt/sources.list.d/ubuntu.sources"
+function alterar_country_mirror() {
+  if [ "$(get_os_type)" == "debian" ]; then
+    sed -i "s/deb.debian.org\/debian/ftp.${country_mirror}.debian.org\/debian/g" "/etc/apt/sources.list"
+    sed -i "s/deb.debian.org\/debian/ftp.${country_mirror}.debian.org\/debian/g" "/etc/apt/sources.list.d/debian.sources"
 
-  # Alterando repositório de segurança para utilizar https ao invés de http
-  sed -i 's/http:\/\/security.ubuntu.com\/ubuntu\//https:\/\/security.ubuntu.com\/ubuntu\//g' "/etc/apt/sources.list"
-  sed -i 's/http:\/\/security.ubuntu.com\/ubuntu\//https:\/\/security.ubuntu.com\/ubuntu\//g' "/etc/apt/sources.list.d/ubuntu.sources"
-fi
+  elif [ "$(get_os_type)" == "ubuntu" ]; then
+    sed -i "s/http:\/\/archive.ubuntu.com\/ubuntu\//mirror:\/\/mirrors.ubuntu.com\/${country_mirror^^}.txt/g" "/etc/apt/sources.list"
+    sed -i "s/http:\/\/archive.ubuntu.com\/ubuntu\//mirror:\/\/mirrors.ubuntu.com\/${country_mirror^^}.txt/g""/etc/apt/sources.list.d/ubuntu.sources"
+  fi
+}
+
+function substituir_http_por_https() {
+  if [ "$(get_os_type)" == "ubuntu" ]; then
+    sed -i 's/http:\/\/security.ubuntu.com\/ubuntu\//https:\/\/security.ubuntu.com\/ubuntu\//g' "/etc/apt/sources.list"
+    sed -i 's/http:\/\/security.ubuntu.com\/ubuntu\//https:\/\/security.ubuntu.com\/ubuntu\//g' "/etc/apt/sources.list.d/ubuntu.sources"
+  fi
+}
+
+function instalar_complementos_apt()
+{
+  DEBIAN_FRONTEND=noninteractive apt-get update
+  DEBIAN_FRONTEND=noninteractive apt-get install -y apt-transport-mirrors
+  DEBIAN_FRONTEND=noninteractive apt-get install -y apt-transport-https
+  DEBIAN_FRONTEND=noninteractive apt-get install -y apt-utils
+  DEBIAN_FRONTEND=noninteractive apt-get install -y apt-mirror
+}
+
+# Configurando APT
+instalar_complementos_apt
+alterar_country_mirror
+substituir_http_por_https
 
 # Atualizando lista de pacotes
-apt-get update
+DEBIAN_FRONTEND=noninteractive apt-get update
