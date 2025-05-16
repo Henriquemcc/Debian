@@ -21,13 +21,6 @@ function alterar_country_mirror() {
   fi
 }
 
-function substituir_http_por_https() {
-  if [ "$(get_os_type)" == "ubuntu" ]; then
-    sed -i 's/http:\/\/security.ubuntu.com\/ubuntu\//https:\/\/security.ubuntu.com\/ubuntu\//g' "/etc/apt/sources.list"
-    sed -i 's/http:\/\/security.ubuntu.com\/ubuntu\//https:\/\/security.ubuntu.com\/ubuntu\//g' "/etc/apt/sources.list.d/ubuntu.sources"
-  fi
-}
-
 function instalar_complementos_apt()
 {
   DEBIAN_FRONTEND=noninteractive apt-get update
@@ -40,7 +33,6 @@ function instalar_complementos_apt()
 # Configurando APT
 instalar_complementos_apt
 alterar_country_mirror
-substituir_http_por_https
 
 # Atualizando lista de pacotes
 DEBIAN_FRONTEND=noninteractive apt-get update
