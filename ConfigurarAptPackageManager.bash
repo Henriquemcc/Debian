@@ -31,10 +31,10 @@ function substituir_http_por_https() {
 function instalar_complementos_apt()
 {
   DEBIAN_FRONTEND=noninteractive apt-get update
-  DEBIAN_FRONTEND=noninteractive apt-get install -y apt-transport-mirrors
-  DEBIAN_FRONTEND=noninteractive apt-get install -y apt-transport-https
-  DEBIAN_FRONTEND=noninteractive apt-get install -y apt-utils
-  DEBIAN_FRONTEND=noninteractive apt-get install -y apt-mirror
+  DEBIAN_FRONTEND=noninteractive apt-get install -y apt-transport-mirrors || true
+  DEBIAN_FRONTEND=noninteractive apt-get install -y apt-transport-https || true
+  DEBIAN_FRONTEND=noninteractive apt-get install -y apt-utils || true
+  DEBIAN_FRONTEND=noninteractive apt-get install -y apt-mirror || true
 }
 
 # Configurando APT
