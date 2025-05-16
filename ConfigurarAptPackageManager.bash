@@ -17,7 +17,7 @@ function alterar_country_mirror() {
 
   elif [ "$(get_os_type)" == "ubuntu" ]; then
     sed -i "s/http:\/\/archive.ubuntu.com\/ubuntu\//mirror:\/\/mirrors.ubuntu.com\/${country_mirror^^}.txt/g" "/etc/apt/sources.list"
-    sed -i "s/http:\/\/archive.ubuntu.com\/ubuntu\//mirror:\/\/mirrors.ubuntu.com\/${country_mirror^^}.txt/g""/etc/apt/sources.list.d/ubuntu.sources"
+    sed -i "s/http:\/\/archive.ubuntu.com\/ubuntu\//mirror:\/\/mirrors.ubuntu.com\/${country_mirror^^}.txt/g" "/etc/apt/sources.list.d/ubuntu.sources"
   fi
 }
 
