@@ -7,32 +7,17 @@ source OsInfo.bash
 # Rodando como root
 run_as_root
 
-# Variáveis
-country_mirror=br
+# Instalando complementos do APT
+export DEBIAN_FRONTEND=noninteractive
+apt-get update
+apt-get install -y apt-transport-https || true
+apt-get install -y apt-utils || true
 
-function alterar_country_mirror() {
-  if [ "$(get_os_type)" == "debian" ]; then
-    sed -i "s/deb.debian.org\/debian/ftp.${country_mirror}.debian.org\/debian/g" "/etc/apt/sources.list"
-    sed -i "s/deb.debian.org\/debian/ftp.${country_mirror}.debian.org\/debian/g" "/etc/apt/sources.list.d/debian.sources"
-
-  elif [ "$(get_os_type)" == "ubuntu" ]; then
-    sed -i "s/http:\/\/archive.ubuntu.com\/ubuntu\//mirror:\/\/mirrors.ubuntu.com\/${country_mirror^^}.txt/g" "/etc/apt/sources.list"
-    sed -i "s/http:\/\/archive.ubuntu.com\/ubuntu\//mirror:\/\/mirrors.ubuntu.com\/${country_mirror^^}.txt/g" "/etc/apt/sources.list.d/ubuntu.sources"
-  fi
-}
-
-function instalar_complementos_apt()
-{
-  DEBIAN_FRONTEND=noninteractive apt-get update
-  DEBIAN_FRONTEND=noninteractive apt-get install -y apt-transport-mirrors || true
-  DEBIAN_FRONTEND=noninteractive apt-get install -y apt-transport-https || true
-  DEBIAN_FRONTEND=noninteractive apt-get install -y apt-utils || true
-  DEBIAN_FRONTEND=noninteractive apt-get install -y apt-mirror || true
-}
-
-# Configurando APT
-instalar_complementos_apt
-alterar_country_mirror
+# Definindo o mirror do Ubuntu
+if [ "$(get_os_type)" == "ubuntu" ]; then
+  sed -i "s/http:\/\/archive.ubuntu.com\/ubuntu\//http:\/\/br.archive.ubuntu.com\/ubuntu\//g" "/etc/apt/sources.list.d/ubuntu.sources"
+  sed -i "s/http:\/\/archive.ubuntu.com\/ubuntu\//http:\/\/br.archive.ubuntu.com\/ubuntu\//g" "/etc/apt/sources.list"
+fi
 
 # Atualizando lista de pacotes
-DEBIAN_FRONTEND=noninteractive apt-get update
+apt-get update
