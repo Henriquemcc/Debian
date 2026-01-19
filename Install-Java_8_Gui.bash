@@ -10,7 +10,7 @@ run_as_root
 bash ./Install-Java_8_Headless.bash
 
 # Installing Java 8 JRE
-apt install --assumeyes openjdk-8-jre
+apt install -y openjdk-8-jre
 
 # Creating shortcuts
 {

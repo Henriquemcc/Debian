@@ -10,7 +10,7 @@ run_as_root
 bash ./Install-Java_11_Headless.bash
 
 # Installing Java 11 JRE
-apt install --assumeyes openjdk-11-jre
+apt install -y openjdk-11-jre
 
 # Creating shortcuts
 {

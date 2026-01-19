@@ -10,7 +10,7 @@ run_as_root
 bash ./Install-Java_17_Headless.bash
 
 # Installing Java 17 JRE
-apt install --assumeyes openjdk-17-jre
+apt install -y openjdk-17-jre
 
 # Creating shortcuts
 {

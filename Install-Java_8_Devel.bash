@@ -15,7 +15,7 @@ if [ "$(command -v javac8)" ]; then
 fi
 
 # Installing Java 8 JDK
-apt install --assumeyes openjdk-8-jdk
+apt install -y openjdk-8-jdk
 
 # Creating command javac8
 ln --symbolic "/usr/lib/jvm/java-1.8.0/bin/javac" "/bin/javac8"

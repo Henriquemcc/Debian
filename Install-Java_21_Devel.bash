@@ -15,7 +15,7 @@ if [ "$(command -v javac21)" ]; then
 fi
 
 # Installing Java 21 JDK
-apt install --assumeyes openjdk-21-jdk
+apt install -y openjdk-21-jdk
 
 # Creating command javac20
 ln --symbolic "/usr/lib/jvm/java-21/bin/javac" "/bin/javac21"

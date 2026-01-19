@@ -12,7 +12,7 @@ source RunAsRoot.bash
 run_as_root
 
 # Installing Java 11 JRE
-apt install --assumeyes openjdk-11-jre-headless
+apt install -y openjdk-11-jre-headless
 
 # Creating command java11
 ln --symbolic "/usr/lib/jvm/java-11/bin/java" "/bin/java11"

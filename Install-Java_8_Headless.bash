@@ -12,7 +12,7 @@ source RunAsRoot.bash
 run_as_root
 
 # Installing Java 8 JRE
-apt install --assumeyes openjdk-8-jre-headless
+apt install -y openjdk-8-jre-headless
 
 # Creating command java8
 ln --symbolic "/usr/lib/jvm/jre-1.8.0/bin/java" "/bin/java8"

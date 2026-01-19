@@ -8,7 +8,7 @@ source RpmPackageManager.bash
 run_as_root
 
 # Installing chrony
-apt install --assumeyes chrony
+apt install -y chrony
 
 # Backing up configuration file
 cp "/etc/chrony/chrony.conf" "/etc/chrony/chrony.conf.backup.$(date "+%d-%m-%Y_%H:%M:%S")"

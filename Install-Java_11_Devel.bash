@@ -15,7 +15,7 @@ if [ "$(command -v javac11)" ]; then
 fi
 
 # Installing Java 11 JDK
-apt install --assumeyes openjdk-11-jdk
+apt install -y openjdk-11-jdk
 
 # Creating command javac11
 ln --symbolic "/usr/lib/jvm/java-11/bin/javac" "/bin/javac11"

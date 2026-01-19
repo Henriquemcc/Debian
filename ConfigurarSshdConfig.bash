@@ -7,7 +7,7 @@ source RunAsRoot.bash
 run_as_root
 
 # Installing Open SSH Server
-apt install --assumeyes openssh-server
+apt install -y openssh-server
 
 # Backing up configuration file
 cp "/etc/ssh/sshd_config" "/etc/ssh/sshd_config.backup.$(date "+%d-%m-%Y_%H:%M:%S")"

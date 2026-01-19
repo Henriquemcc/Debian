@@ -15,7 +15,7 @@ if [ "$(command -v javac17)" ]; then
 fi
 
 # Installing Java 17 JDK
-apt install --assumeyes openjdk-17-jdk
+apt install -y openjdk-17-jdk
 
 # Creating command javac17
 ln --symbolic "/usr/lib/jvm/java-17/bin/javac" "/bin/javac17"
