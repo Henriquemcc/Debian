@@ -5,7 +5,7 @@ function_return_variable=
 function obter_opcao() {
   _opcao_selecionada=-1
   re='^[0-9]+$'
-  while ! [[ $_opcao_selecionada =~ $re ]] || [ $_opcao_selecionada -lt 0 ] || [ $_opcao_selecionada -gt 6 ]; do
+  while ! [[ $_opcao_selecionada =~ $re ]] || [ $_opcao_selecionada -lt 0 ] || [ $_opcao_selecionada -gt 5 ]; do
     echo "O que deseja fazer?"
     echo "0 - Sair"
     echo "1 - Executar instalação padrão"
@@ -13,7 +13,6 @@ function obter_opcao() {
     echo "3 - Configurar o sistema"
     echo "4 - Instalar pacote"
     echo "5 - Limpar o sistema"
-    echo "6 - Reparar"
     read -r _opcao_selecionada
   done
 
@@ -37,7 +36,5 @@ while [ $opcao_selecionada -ne 0 ]; do
     bash ./InstalarPacotes.bash
   elif [ "$opcao_selecionada" -eq 5 ]; then
     bash ./Limpar.bash
-  elif [ "$opcao_selecionada" -eq 6 ]; then
-    bash ./Reparar.bash
   fi
 done
