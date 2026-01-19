@@ -46,5 +46,5 @@ if [ "$(is_kernel_compatible_with_exfat_module)" == 1 ]; then
 
 # Installing fuse-exfat
 else
-  apt install --assumeyes fuse-exfat
+  apt install -y fuse-exfat
 fi

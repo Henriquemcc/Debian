@@ -12,7 +12,7 @@ source RunAsRoot.bash
 run_as_root
 
 # Installing Java 17 JRE
-apt install --assumeyes openjdk-17-jre-headless
+apt install -y openjdk-17-jre-headless
 
 # Creating command java17
 ln --symbolic "/usr/lib/jvm/java-17/bin/java" "/bin/java17"

@@ -26,9 +26,9 @@ function run_as_root() {
     apt update
 
     # Instalando os programas para sincronização
-    apt install --assumeyes rsync
-    apt install --assumeyes git
-    apt install --assumeyes git-lfs
+    apt install -y rsync
+    apt install -y git
+    apt install -y git-lfs
   }
 
   # Carregando dados do arquivo .env

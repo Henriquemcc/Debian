@@ -18,7 +18,7 @@ function run_as_root() {
 # Updating packages
 apt update && apt full-upgrade -y
 snap refresh
-flatpak update --assumeyes
+flatpak update -y
 
 # Running again as root
 run_as_root

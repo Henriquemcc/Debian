@@ -10,7 +10,7 @@ run_as_root
 bash ./Install-Java_21_Headless.bash
 
 # Installing Java 21 JRE
-apt install --assumeyes openjdk-21-jre
+apt install -y openjdk-21-jre
 
 # Creating shortcuts
 {

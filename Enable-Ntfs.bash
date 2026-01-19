@@ -47,5 +47,5 @@ if [ "$(is_kernel_compatible_with_ntfs3_module)" == 1 ]; then
 
 # Installing ntfs-3g
 else
-  apt install --assumeyes ntfs-3g
+  apt install -y ntfs-3g
 fi

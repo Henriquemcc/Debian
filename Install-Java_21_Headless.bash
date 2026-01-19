@@ -12,7 +12,7 @@ source RunAsRoot.bash
 run_as_root
 
 # Installing Java 21 JRE
-apt install --assumeyes openjdk-21-jre-headless
+apt install -y openjdk-21-jre-headless
 
 # Creating command java21
 ln --symbolic "/usr/lib/jvm/java-21/bin/java" "/bin/java21"
