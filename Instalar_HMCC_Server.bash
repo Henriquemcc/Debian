@@ -51,7 +51,7 @@ function run_as_root() {
   bash ./Disable-Cockpit.bash
 
   # Alterando o nome do computador
-  hostnamectl set-hostname --static "$hostname_hmcc_server"
+  hostnamectl set-hostname --static "$HOSTNAME_HMCC_SERVER"
 
   # Configurando o NTP
   bash ./ConfigurarNtp.bash
@@ -94,3 +94,6 @@ if [ "$(whoami)" == "root" ]; then
 else
   sudo bash -c "$(declare -f run_as_root); run_as_root"
 fi
+
+# Baixando chaves públicas ssh
+bash ./Get-SshPublicKeysFromGithub.bash
