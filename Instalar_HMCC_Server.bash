@@ -51,7 +51,7 @@ function run_as_root() {
   bash ./Disable-Cockpit.bash
 
   # Alterando o nome do computador
-  hostnamectl set-hostname --static "$hostname_hmcc_server"
+  hostnamectl set-hostname --static "$HOSTNAME_HMCC_SERVER"
 
   # Configurando o NTP
   bash ./ConfigurarNtp.bash
