@@ -3,8 +3,13 @@
 function apt_download_install() {
 
   # Updating repository and installing requirement
-  DEBIAN_FRONTEND=noninteractive apt update
-  DEBIAN_FRONTEND=noninteractive apt install -y curl
+  if [ "$(command -v apt)" ]; then
+    DEBIAN_FRONTEND=noninteractive apt update
+    DEBIAN_FRONTEND=noninteractive apt install -y curl
+  elif [ "$(command -v apt-get)" ]; then
+    DEBIAN_FRONTEND=noninteractive apt-get update
+    DEBIAN_FRONTEND=noninteractive apt-get install -y curl
+  fi
 
   # Downloading and installing packages
   for download_url in "$@" ; do
