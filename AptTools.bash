@@ -45,3 +45,14 @@ function apt_install() {
     fi
   done
 }
+
+function apt_uninstall() {
+    # Uninstalling packages
+    for package in "$@" ; do
+      if [ "$(command -v apt)" ]; then
+        DEBIAN_FRONTEND=noninteractive apt autoremove -y "$package"
+      elif [ "$(command -v apt-get)" ]; then
+        DEBIAN_FRONTEND=noninteractive apt-get remove -y "$package"
+      fi
+    done
+}
