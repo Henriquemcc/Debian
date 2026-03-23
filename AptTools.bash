@@ -12,6 +12,12 @@ function apt_download_install() {
     mkdir -p "$download_dir" || exit
     download_filename="echo ${download_url##*/}"
     curl -L "$download_url" --output "$download_filename"
-    DEBIAN_FRONTEND=noninteractive apt install -y "./$download_filename"
+    if [ "$(command -v apt)" ]; then
+      DEBIAN_FRONTEND=noninteractive apt install -y "./$download_filename"
+    elif "[ $(command -v apt-get)" ]; then
+      DEBIAN_FRONTEND=noninteractive apt-get install -y "./$download_filename"
+    elif [ "$(command -v dpkg)" ]; then
+      DEBIAN_FRONTEND=noninteractive dpkg -i "./$download_filename"
+    fi
   done
 }
