@@ -56,3 +56,11 @@ function apt_uninstall() {
       fi
     done
 }
+
+function apt_update() {
+  if [ "$(command -v apt)" ]; then
+    DEBIAN_FRONTEND=noninteractive apt update
+  elif [ "$(command -v apt-get)" ]; then
+    DEBIAN_FRONTEND=noninteractive apt-get update
+  fi
+}
