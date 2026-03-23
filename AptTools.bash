@@ -12,10 +12,12 @@ function apt_download_install() {
   fi
 
   # Downloading and installing packages
+  previous_path="$(pwd)"
   for download_url in "$@" ; do
     download_dir="/tmp/apt/download/$(date "+%d-%m-%Y_%H:%M:%S")"
-    mkdir -p "$download_dir" || exit
-    download_filename="echo ${download_url##*/}"
+    mkdir -p "$download_dir" || exit 1
+    cd "$download_dir" || exit 1
+    download_filename="${download_url##*/}"
     curl -L "$download_url" --output "$download_filename"
     if [ "$(command -v apt)" ]; then
       DEBIAN_FRONTEND=noninteractive apt install -y "./$download_filename"
@@ -25,6 +27,7 @@ function apt_download_install() {
       DEBIAN_FRONTEND=noninteractive dpkg -i "./$download_filename"
     fi
   done
+  cd "$previous_path" || exit 1
 }
 
 function apt_install() {
