@@ -26,3 +26,22 @@ function apt_download_install() {
     fi
   done
 }
+
+function apt_install() {
+
+  # Updating repositories
+  if [ "$(command -v apt)" ]; then
+    DEBIAN_FRONTEND=noninteractive apt update
+  elif [ "$(command -v apt-get)" ]; then
+    DEBIAN_FRONTEND=noninteractive apt-get update
+  fi
+
+  # Installing packages
+  for package in "$@" ; do
+    if [ "$(command -v apt)" ]; then
+      DEBIAN_FRONTEND=noninteractive apt install -y "$package"
+    elif [ "$(command -v apt-get)" ]; then
+      DEBIAN_FRONTEND=noninteractive apt-get install -y "$package"
+    fi
+  done
+}
