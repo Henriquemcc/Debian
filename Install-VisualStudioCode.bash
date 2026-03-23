@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Importing functions run_as_root and uninstall_rpm_package
+# Importing functions run_as_root and apt_install
 source RunAsRoot.bash
 source AptTools.bash
 
@@ -13,13 +13,7 @@ if [ "$(command -v code)" ]; then
 fi
 
 # Installing requirements
-if [ "$(command -v apt)" ]; then
-  DEBIAN_FRONTEND=noninteractive apt update
-  DEBIAN_FRONTEND=noninteractive apt install -y curl gpg
-elif [ "$(command -v apt-get)" ]; then
-  DEBIAN_FRONTEND=noninteractive apt-get update
-  DEBIAN_FRONTEND=noninteractive apt-get install -y curl gpg
-fi
+apt_install curl gpg
 
 # Installing Visual Studio Code from DEB package
 if [ "$(command -v apt)" ] || [ "$(command -v apt-get)" ]; then
@@ -36,16 +30,8 @@ if [ "$(command -v apt)" ] || [ "$(command -v apt-get)" ]; then
     echo "Signed-By: /usr/share/keyrings/vscode.gpg"
   } > /etc/apt/sources.list.d/vscode.sources
 
-  # Updating repository and installing Visual Studio Code
-  if [ "$(command -v apt)" ]; then
-    DEBIAN_FRONTEND=noninteractive apt update
-    DEBIAN_FRONTEND=noninteractive apt-cache policy code
-    DEBIAN_FRONTEND=noninteractive apt install -y code
-  elif [ "$(command -v apt-get)" ]; then
-    DEBIAN_FRONTEND=noninteractive apt-get update
-    DEBIAN_FRONTEND=noninteractive apt-cache policy code
-    DEBIAN_FRONTEND=noninteractive apt-get install -y code
-  fi
+  # Installing Visual Studio Code
+  apt_install code
 
 # Installing Visual Studio Code from Snap package
 else
