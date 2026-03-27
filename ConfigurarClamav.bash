@@ -30,5 +30,5 @@ cp /etc/clamd.d/scan.conf /etc/clamd.d/scan.conf.backup.$(date "+%d-%m-%Y_%H:%M:
 gpasswd -a "$SUDO_USER" virusgroup
 
 # Enabling Clamav
-systemctl enable clamd@scan clamav-freshclam
-systemctl start clamd@scan clamav-freshclam
+systemctl enable clamav-daemon clamav-freshclam
+systemctl start clamav-daemon clamav-freshclam
