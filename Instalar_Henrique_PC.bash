@@ -219,6 +219,9 @@ function run_as_root() {
   # Configurando Systemd-Resolved
   bash ./ConfigurarSystemdResolved.bash
 
+  # Configurando o Clamav
+  bash ./ConfigurarClamav.bash
+
   # Desabilitando o sshd
   bash ./Disable-Sshd.bash
 
