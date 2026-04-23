@@ -14,6 +14,9 @@ cp "/etc/default/grub" "/etc/default/grub.backup.$(date "+%d-%m-%Y_%H:%M:%S")"
 if ! grep -q "GRUB_SAVEDEFAULT=true" "/etc/default/grub"; then
   echo "GRUB_SAVEDEFAULT=true" >> "/etc/default/grub"
 fi
+if grep -q "GRUB_DEFAULT=0" "/etc/default/grub"; then
+  echo "GRUB_DEFAULT=saved" >> "/etc/default/grub"
+fi
 
 # Permitindo que o grub detecte outros sistemas operacionais e outras distros
 if ! grep -q "GRUB_DISABLE_OS_PROBER=false" "/etc/default/grub"; then
