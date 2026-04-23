@@ -24,3 +24,7 @@ fi
 grub2-mkconfig -o /etc/grub2.cfg
 grub2-mkconfig -o /etc/grub2-efi.cfg
 grub2-mkconfig -o /boot/grub2/grub.cfg
+grub-mkconfig -o /etc/grub2.cfg
+grub-mkconfig -o /etc/grub2-efi.cfg
+grub-mkconfig -o /boot/grub2/grub.cfg
+update-grub
