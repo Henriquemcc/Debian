@@ -135,7 +135,7 @@ function run_as_root() {
   bash ./Disable-Sshd.bash
 
   # Configurando o Grub
-  bash ./ConfigurarGrub.bash
+  bash ./ConfigurarGrubMarizaPC.bash
 
   # Configurando o NTP
   bash ./ConfigurarNtp.bash
