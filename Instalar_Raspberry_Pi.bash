@@ -20,8 +20,9 @@ function run_as_root() {
     # Podman
     deb_packages+=("podman")
 
-    # Podman-Docker
-    deb_packages+=("podman-docker")
+    # Docker
+    deb_packages+=("docker.io")
+    deb_packages+=("docker-compose")
 
     # Instalando pacotes DEB
     apt_install "${deb_packages[@]}"
