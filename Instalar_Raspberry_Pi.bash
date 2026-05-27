@@ -60,12 +60,6 @@ function run_as_root() {
   # Instalando pacotes dnf
   instalar_pacotes_apt
 
-  # Instalando o Flatpak
-  bash ./Install-Flatpak.bash
-
-  # Instalando o gerenciador de pacotes Snap
-  bash ./Install-Snapd.bash
-
   # Instalando Java
   bash ./Install-Java_21_Headless.bash
 
