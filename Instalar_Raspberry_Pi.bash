@@ -24,6 +24,9 @@ function run_as_root() {
     deb_packages+=("docker.io")
     deb_packages+=("docker-compose")
 
+    # Outros
+    deb_packages+=("net-tools")
+
     # Instalando pacotes DEB
     apt_install "${deb_packages[@]}"
 
