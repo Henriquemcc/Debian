@@ -22,7 +22,6 @@ autoinstall:
     - hplip
 
     # Instalando o KVM
-    - qemu-kvm
     - libvirt
 
     # Instalando os Sistemas de arquivos não nativos do linux
