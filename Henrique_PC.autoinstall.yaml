@@ -1,0 +1,114 @@
+#cloud-config
+autoinstall:
+  version: 1
+  locale: pt_BR.utf8
+  keyboard:
+    layout: br
+  timezone: "America/Sao_Paulo"
+  codecs:
+    install: true
+  drivers:
+    install: true
+  updates: all
+  apt:
+    mirror-selection:
+      primary:
+        - country-mirror
+  packages:
+    # Pacote Base
+    - ubuntu-desktop
+
+    # Impressora HP
+    - hplip
+
+    # Instalando o KVM
+    - qemu-kvm
+    - libvirt
+
+    # Instalando os Sistemas de arquivos não nativos do linux
+    - fuse
+
+    # Instalando outros programas
+    - sudo-rs
+
+    # Instalando ferramentas de segurança
+    - chkrootkit
+    - lynis
+
+    # Instalando outros programas
+    - mokutil
+
+    # Instalando o File Roller
+    - file-roller
+    - file-roller-nautilus
+
+    # Instalando o Suporte a arquivos 7zip
+    - p7zip-plugins
+    - p7zip
+
+    # Instalando as Ferramentas de desenvolvimento
+    - golang
+    - gcc
+    - gcc-c++
+    - dotnet-sdk-5.0
+    - aspnetcore-runtime-5.0
+    - dotnet-runtime-5.0
+    - git
+    - git-lfs
+    - adb
+    - libstdc++-devel
+    - perf
+    - python3-pip
+    - python-is-python3
+    - python3-devel
+
+    # Instalando ferramentas para manipular arquivos PDF
+    - imagemagick
+    - pdftk-java
+    - ocrmypdf
+
+    # Instalando outros programas
+    - vlc
+    - stacer
+    - qt5-qtcharts
+    - libdvdcss
+    - qt5-qtsvg
+    - youtube-dl
+    - yt-dlp
+    - ffmpeg
+    - fdupes
+    - gwakeonlan
+    - brasero
+    - rclone
+    - wireshark
+    - detox
+    - command-not-found
+    - flatpak
+    - gnome-software-plugin-flatpak
+
+  snaps:
+    - name: spotify
+    - name: intellij-idea-community
+      classic: true
+    - name: pycharm-community
+      classic: true
+    - name: flutter
+      classic: true
+    - name: kotlin
+      classic: true
+    - name: postman
+
+  late-commands:
+    # Baixando o arquivo zip do repositório
+    - url_file="https://github.com/Henriquemcc/Debian/archive/refs/heads/main.tar.gz"
+    - path_download_file="/tmp/Debian_main.zip"
+    - curl -L "$url_file" > "$path_download_file"
+
+    # Extraíndo arquivo tar
+    - tar -xzf "$path_download_file" -C "/tmp"
+
+    # Entrando dentro da pasta
+    - cd "/tmp/Debian-main" || exit 1
+
+    # Executando script
+    - bash ./Instalar_Henrique_PC.bash
