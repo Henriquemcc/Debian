@@ -23,9 +23,6 @@ autoinstall:
     # Impressora HP
     - hplip
 
-    # Instalando o KVM
-    - libvirt
-
     # Instalando os Sistemas de arquivos não nativos do linux
     - fuse
 
@@ -41,27 +38,18 @@ autoinstall:
 
     # Instalando o File Roller
     - file-roller
-    - file-roller-nautilus
 
     # Instalando o Suporte a arquivos 7zip
-    - p7zip-plugins
     - p7zip
 
     # Instalando as Ferramentas de desenvolvimento
     - golang
     - gcc
-    - gcc-c++
-    - dotnet-sdk-5.0
-    - aspnetcore-runtime-5.0
-    - dotnet-runtime-5.0
     - git
     - git-lfs
     - adb
-    - libstdc++-devel
-    - perf
     - python3-pip
     - python-is-python3
-    - python3-devel
 
     # Instalando ferramentas para manipular arquivos PDF
     - imagemagick
@@ -71,10 +59,6 @@ autoinstall:
     # Instalando outros programas
     - vlc
     - stacer
-    - qt5-qtcharts
-    - libdvdcss
-    - qt5-qtsvg
-    - youtube-dl
     - yt-dlp
     - ffmpeg
     - fdupes
