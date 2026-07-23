@@ -16,6 +16,9 @@ source /etc/os-release
 
 # Installing Microsoft repository GPG keys
 OS_TYPE="$(get_os_type)"
+if [ "$OS_TYPE" == "linuxmint" ]; then
+    OS_TYPE="ubuntu"
+fi
 apt_download_install "https://packages.microsoft.com/config/$OS_TYPE/$VERSION_ID/packages-microsoft-prod.deb"
 
 # Installing PowerShell
