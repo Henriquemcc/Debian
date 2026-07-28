@@ -24,6 +24,9 @@ function run_as_root() {
     deb_packages+=("docker.io")
     deb_packages+=("docker-compose")
 
+    # Wireguard
+    deb_packages+=("wireguard")    
+
     # Outros
     deb_packages+=("net-tools")
 
@@ -67,11 +70,11 @@ function run_as_root() {
   # Instalando Java
   bash ./Install-Java_21_Headless.bash
 
-  # Instalando o Wireguard
-  bash ./Wireguard/Install-Wireguard.bash
-
   # Instalando o Dynamic DNS Update Client
   bash ./Install-Dynamic_Dns_Update_Client.bash
+
+  # Instalando Kubernetes
+  curl -sfL https://get.k3s.io | sh -
 
   # Atualizando todos os pacotes instalados
   bash ./Update-All.bash
