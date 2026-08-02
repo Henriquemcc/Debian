@@ -130,6 +130,10 @@ function run_as_root() {
     done
 
     while true; do
+      snap install helm --classic && break
+    done
+
+    while true; do
       snap install flutter --classic && break
     done
 
@@ -153,6 +157,9 @@ function run_as_root() {
 
     # Instalando o BitWarden
     flatpak install --assumeyes https://dl.flathub.org/repo/appstream/com.bitwarden.desktop.flatpakref
+
+    # Instalando o Podman
+    flatpak install --assumeyes https://dl.flathub.org/repo/appstream/io.podman_desktop.PodmanDesktop.flatpakref
 
     # Instalando o KeepassXC
     flatpak install --assumeyes https://dl.flathub.org/repo/appstream/org.keepassxc.KeePassXC.flatpakref
