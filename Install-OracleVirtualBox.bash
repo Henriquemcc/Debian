@@ -14,8 +14,10 @@ bash ./Uninstall-VirtualBox.bash
 apt_install curl gpg
 
 # Adding repository
-if ! grep -q "deb [arch=amd64 signed-by=/usr/share/keyrings/oracle-virtualbox-2016.gpg] https://download.virtualbox.org/virtualbo" /etc/apt/sources.list; then
-  echo "deb [arch=amd64 signed-by=/usr/share/keyrings/oracle-virtualbox-2016.gpg] https://download.virtualbox.org/virtualbo" > /etc/apt/sources.list
+repository_string="deb [arch=amd64 signed-by=/usr/share/keyrings/oracle-virtualbox-2016.gpg] https://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib"
+repository_file_path="/etc/apt/sources.list.d/oracle-virtualbox.list"
+if ! grep -q "$repository_string" "$repository_file_path"; then
+  echo "$repository_string" >> "$repository_file_path"
 fi
 
 # Adding public key
