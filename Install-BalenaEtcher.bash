@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="2.1.4"
+version="2.1.6"
 download_url="https://github.com/balena-io/etcher/releases/download/v${version}/balena-etcher_${version}_amd64.deb"
 
 # Importing function run_as_root and apt_download_install
