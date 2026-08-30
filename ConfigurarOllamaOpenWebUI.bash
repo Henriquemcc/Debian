@@ -9,7 +9,7 @@ function run_as_root() {
   fi
 
   # Instalando ollama
-  apt install -y ollama
+  snap install ollama
 
   # Instalando Nvidia Container
   bash ./Install-NvidiaContainer.bash
