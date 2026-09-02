@@ -209,9 +209,6 @@ function run_as_root() {
     # Instalando o Packet (Quick-Share)
     flatpak install --assumeyes https://dl.flathub.org/repo/appstream/io.github.nozwock.Packet.flatpakref
 
-    # Instalando o Steam
-    flatpak install --assumeyes https://dl.flathub.org/repo/appstream/com.valvesoftware.Steam.flatpakref
-
     # Instalando o Hytale
     flatpak install --assumeyes https://launcher.hytale.com/builds/release/linux/amd64/hytale-launcher-latest.flatpak
 
@@ -269,6 +266,9 @@ function run_as_root() {
 
   # Instalando pacotes flatpak
   instalar_pacotes_flatpak
+
+  # Instalando o Steam
+  bash ./Install-Steam.bash
 
   # Atualizando todos os pacotes instalados
   bash ./Update-All.bash
