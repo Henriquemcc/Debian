@@ -220,6 +220,9 @@ function run_as_root() {
   bash ./Enable-Ntfs.bash
   bash ./Enable-ExFat.bash
 
+  # Configurando o Unattended Upgrades
+  bash ./ConfigurarUnattendedUpgrades.bash
+
   # Configurando Systemd-Resolved
   bash ./ConfigurarSystemdResolved.bash
 
