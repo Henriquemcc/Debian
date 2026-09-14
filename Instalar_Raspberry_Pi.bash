@@ -43,6 +43,9 @@ function run_as_root() {
   # Configurando Systemd-Resolved
   bash ./ConfigurarSystemdResolved.bash
 
+  # Configurando o Unattended Upgrades
+  bash ./ConfigurarUnattendedUpgradesRaspberryPi.bash
+
   # Configurando o sshd_config
   bash ./ConfigurarSshdConfig.bash
 
