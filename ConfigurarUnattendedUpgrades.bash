@@ -25,18 +25,30 @@ fi
 # Configuring Unattended Upgrades
 {
     echo "Unattended-Upgrade::Allowed-Origins {"
-    if [ "$(get_os_type)" = "ubuntu" ]; then
+
+    # Getting the OS type
+    os_type="$(get_os_type)"
+
+    # Normalizing OS type for Linux Mint, Pop!_OS, Raspbian, and Kali Linux
+    if [ "$os_type" = "linuxmint" ] || [ "$os_type" = "pop" ]; then
+        os_type="ubuntu"
+    elif [ "$os_type" = "raspbian" ] || [ "$os_type" = "kali" ]; then
+        os_type="debian"
+    fi
+
+    if [ "$os_type" = "ubuntu" ]; then
         echo "        \"\${distro_id}:\${distro_codename}\";"
         echo "        \"\${distro_id}:\${distro_codename}-security\";"
         echo "        \"\${distro_id}ESMApps:\${distro_codename}-apps-security\";"
         echo "        \"\${distro_id}ESM:\${distro_codename}-infra-security\";"
         echo "        \"\${distro_id}:\${distro_codename}-updates\";"
         echo "        \"\${distro_id}:\${distro_codename}-backports\";"
-    elif [ "$(get_os_type)" = "debian" ]; then
+    elif [ "$os_type" = "debian" ]; then
         echo "        \"origin=Debian,codename=\${distro_codename}-updates\";"
         echo "        \"origin=Debian,codename=\${distro_codename},label=Debian\";"
         echo "        \"origin=Debian,codename=\${distro_codename},label=Debian-Security\";"
         echo "        \"origin=Debian,codename=\${distro_codename}-security,label=Debian-Security\";"
+        echo "        \"origin=Debian,codename=\${distro_codename}-backports,label=Debian-Backports\";"
     fi
     echo "};"
 
