@@ -22,7 +22,6 @@ cp "/etc/apt/apt.conf.d/20auto-upgrades" "/etc/apt/apt.conf.d/20auto-upgrades.ba
 	echo "        \"\${distro_id}ESMApps:\${distro_codename}-apps-security\";"
 	echo "        \"\${distro_id}ESM:\${distro_codename}-infra-security\";"
 	echo "        \"\${distro_id}:\${distro_codename}-updates\";"
-	echo "        \"\${distro_id}:\${distro_codename}-proposed\";"
 	echo "        \"\${distro_id}:\${distro_codename}-backports\";"
     echo "};"
 
