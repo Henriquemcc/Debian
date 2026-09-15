@@ -52,9 +52,6 @@ fi
     fi
     echo "};"
 
-    echo "Unattended-Upgrade::Package-Blacklist {"
-    echo "};"
-
     echo "Unattended-Upgrade::DevRelease \"auto\";"
     echo "Unattended-Upgrade::AutoFixInterruptedDpkg \"true\";"
     echo "Unattended-Upgrade::MinimalSteps \"true\";"
