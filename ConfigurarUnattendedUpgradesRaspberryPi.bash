@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# Importing function run_as_root and apt_install
+# Importing function run_as_root, apt_install and get_os_type
 source RunAsRoot.bash
 source AptTools.bash
+source OsInfo.bash
 
 # Running as root
 run_as_root
@@ -11,18 +12,32 @@ run_as_root
 apt_install unattended-upgrades
 
 # Backup the original configuration files
-cp "/etc/apt/apt.conf.d/50unattended-upgrades" "/etc/apt/apt.conf.d/50unattended-upgrades.backup.$(date "+%d-%m-%Y_%H:%M:%S")"
-cp "/etc/apt/apt.conf.d/20auto-upgrades" "/etc/apt/apt.conf.d/20auto-upgrades.backup.$(date "+%d-%m-%Y_%H:%M:%S")"
+TIMESTAMP=$(date "+%d-%m-%Y_%H:%M:%S")
+if [ -f "/etc/apt/apt.conf.d/50unattended-upgrades" ]; then
+    cp "/etc/apt/apt.conf.d/50unattended-upgrades" \
+       "/etc/apt/apt.conf.d/50unattended-upgrades.backup.${TIMESTAMP}"
+fi
+if [ -f "/etc/apt/apt.conf.d/20auto-upgrades" ]; then
+    cp "/etc/apt/apt.conf.d/20auto-upgrades" \
+       "/etc/apt/apt.conf.d/20auto-upgrades.backup.${TIMESTAMP}"
+fi
 
 # Configuring Unattended Upgrades
 {
     echo "Unattended-Upgrade::Allowed-Origins {"
-	echo "        \"\${distro_id}:\${distro_codename}\";"
-	echo "        \"\${distro_id}:\${distro_codename}-security\";"
-	echo "        \"\${distro_id}ESMApps:\${distro_codename}-apps-security\";"
-	echo "        \"\${distro_id}ESM:\${distro_codename}-infra-security\";"
-	echo "        \"\${distro_id}:\${distro_codename}-updates\";"
-	echo "        \"\${distro_id}:\${distro_codename}-backports\";"
+    if [ "$(get_os_type)" = "ubuntu" ]; then
+        echo "        \"\${distro_id}:\${distro_codename}\";"
+        echo "        \"\${distro_id}:\${distro_codename}-security\";"
+        echo "        \"\${distro_id}ESMApps:\${distro_codename}-apps-security\";"
+        echo "        \"\${distro_id}ESM:\${distro_codename}-infra-security\";"
+        echo "        \"\${distro_id}:\${distro_codename}-updates\";"
+        echo "        \"\${distro_id}:\${distro_codename}-backports\";"
+    elif [ "$(get_os_type)" = "debian" ]; then
+        echo "        \"origin=Debian,codename=\${distro_codename}-updates\";"
+        echo "        \"origin=Debian,codename=\${distro_codename},label=Debian\";"
+        echo "        \"origin=Debian,codename=\${distro_codename},label=Debian-Security\";"
+        echo "        \"origin=Debian,codename=\${distro_codename}-security,label=Debian-Security\";"
+    fi
     echo "};"
 
     echo "Unattended-Upgrade::Package-Blacklist {"
