@@ -10,8 +10,9 @@ run_as_root
 # Installing Unattended Upgrades package
 apt_install unattended-upgrades
 
-# Backup the original configuration file
+# Backup the original configuration files
 cp "/etc/apt/apt.conf.d/50unattended-upgrades" "/etc/apt/apt.conf.d/50unattended-upgrades.backup.$(date "+%d-%m-%Y_%H:%M:%S")"
+cp "/etc/apt/apt.conf.d/20auto-upgrades" "/etc/apt/apt.conf.d/20auto-upgrades.backup.$(date "+%d-%m-%Y_%H:%M:%S")"
 
 # Configuring Unattended Upgrades
 {
@@ -39,6 +40,12 @@ cp "/etc/apt/apt.conf.d/50unattended-upgrades" "/etc/apt/apt.conf.d/50unattended
     echo "Unattended-Upgrade::Skip-Updates-On-Metered-Connections \"true\";"
 
 } > "/etc/apt/apt.conf.d/50unattended-upgrades"
+
+# Configuring automatic updates
+{
+    echo "APT::Periodic::Update-Package-Lists \"1\";"
+    echo "APT::Periodic::Unattended-Upgrade \"1\";"
+} > "/etc/apt/apt.conf.d/20auto-upgrades"
 
 # Enabling Unattended Upgrades
 systemctl enable --now unattended-upgrades.service
