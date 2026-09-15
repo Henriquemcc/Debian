@@ -21,7 +21,7 @@ function apt_download_install() {
     curl -L "$download_url" --output "$download_filename"
     if [ "$(command -v apt)" ]; then
       DEBIAN_FRONTEND=noninteractive apt install -y "./$download_filename"
-    elif "[ $(command -v apt-get)" ]; then
+    elif [ "$(command -v apt-get)" ]; then
       DEBIAN_FRONTEND=noninteractive apt-get install -y "./$download_filename"
     elif [ "$(command -v dpkg)" ]; then
       DEBIAN_FRONTEND=noninteractive dpkg -i "./$download_filename"
