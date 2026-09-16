@@ -37,6 +37,7 @@ fi
         os_type="debian"
     fi
 
+    # Distro repositories
     if [ "$os_type" = "ubuntu" ]; then
         echo "        \"\${distro_id}:\${distro_codename}\";"
         echo "        \"\${distro_id}:\${distro_codename}-security\";"
@@ -51,6 +52,20 @@ fi
         echo "        \"origin=Debian,codename=\${distro_codename}-security,label=Debian-Security\";"
         echo "        \"origin=Debian,codename=\${distro_codename}-backports,label=Debian-Backports\";"
     fi
+        # Third-party repositories with a proper origin:archive pair (via apt-cache policy)
+        echo "        \"Google LLC:stable\";"              # Google Chrome (dl.google.com)
+        echo "        \"code stable:stable\";"              # Visual Studio Code (packages.microsoft.com)
+        echo "        \"Docker:\${distro_codename}\";"      # Docker CE (download.docker.com) - archive tracks the distro codename
+
+    echo "};"
+
+    # Third-party repositories without a Suite/Archive field in their Release file
+    # (Allowed-Origins requires an origin:archive pair, so these need Origins-Pattern instead)
+    echo "Unattended-Upgrade::Origins-Pattern {"
+    echo "        \"site=hub.unity3d.com\";"                                  # Unity Hub
+    echo "        \"origin=gh\";"                                             # GitHub CLI (cli.github.com)
+    echo "        \"origin=Oracle Corporation,site=download.virtualbox.org\";" # VirtualBox
+    echo "        \"site=download.opensuse.org,label=isv:Rancher:stable\";"   # Rancher Desktop
     echo "};"
 
     echo "Unattended-Upgrade::DevRelease \"auto\";"
