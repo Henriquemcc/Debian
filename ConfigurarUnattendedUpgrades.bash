@@ -13,13 +13,14 @@ apt_install unattended-upgrades
 
 # Backup the original configuration files
 TIMESTAMP=$(date "+%d-%m-%Y_%H:%M:%S")
+mkdir -p "/backup/etc/apt/apt.conf.d"
 if [ -f "/etc/apt/apt.conf.d/50unattended-upgrades" ]; then
     cp "/etc/apt/apt.conf.d/50unattended-upgrades" \
-       "/etc/apt/apt.conf.d/50unattended-upgrades.backup.${TIMESTAMP}"
+       "/backup/etc/apt/apt.conf.d/50unattended-upgrades.backup.${TIMESTAMP}"
 fi
 if [ -f "/etc/apt/apt.conf.d/20auto-upgrades" ]; then
     cp "/etc/apt/apt.conf.d/20auto-upgrades" \
-       "/etc/apt/apt.conf.d/20auto-upgrades.backup.${TIMESTAMP}"
+       "/backup/etc/apt/apt.conf.d/20auto-upgrades.backup.${TIMESTAMP}"
 fi
 
 # Configuring Unattended Upgrades
